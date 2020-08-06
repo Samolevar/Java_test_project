@@ -19,7 +19,7 @@ public class InputParameterTests extends FunctionalTestBase {
     }
 
     @Test
-    void SeparatorIsLastElement_Failed(){
+    void SeparatorIsLastElement_Success(){
         RequestSpec.when()
                 .contentType("application/json")
                 .body("{\"separator\": \"-\", \"input\": \"3-4-5-\"}")
@@ -28,7 +28,7 @@ public class InputParameterTests extends FunctionalTestBase {
                 .log()
                 .ifValidationFails(LogDetail.BODY)
                 .assertThat()
-                .statusCode(422);
+                .statusCode(200);
     }
 
     @Test
