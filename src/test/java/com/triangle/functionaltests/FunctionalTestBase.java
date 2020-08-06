@@ -1,14 +1,14 @@
 package com.triangle.functionaltests;
 
-import com.triangle.models.TestRequest;
+import com.triangle.helpers.CleanActions;
 import com.triangle.models.Triangle;
 import com.triangle.testbase.TestBase;
+
 import io.restassured.RestAssured;
-import io.restassured.filter.log.LogDetail;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -27,18 +27,6 @@ public class FunctionalTestBase extends TestBase {
 
     @AfterAll
     public static void TearDown(){
-        List<String> ids = RequestSpec.given()
-                .get("/triangle/all")
-                .then()
-                .extract()
-                .jsonPath()
-                .getList("id");
-
-        for (String id : ids) {
-            RequestSpec.given()
-                    .delete(String.format("/triangle/%s", id))
-                    .then()
-                    .statusCode(200);
-        }
+        CleanActions.CleanAll(RequestSpec);
     }
 }

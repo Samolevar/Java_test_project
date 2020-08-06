@@ -35,7 +35,7 @@ public class AmountOfTrianglesTests extends FunctionalTestBase {
                 .body(request)
                 .post("/triangle");
 
-        int countOfRecords = RequestSpec.given()
+        int countOfRecords = RequestSpec
                 .get("/triangle/all")
                 .then()
                 .log()
